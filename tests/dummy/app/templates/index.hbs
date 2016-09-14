@@ -1,0 +1,54 @@
+<div class="container">
+  <h2 id="title">Demo of ember-spin-button2 Addon</h2>
+
+  <div class="controls-container">
+    <h3>Button Color</h3>
+    <div class="control-group">
+      {{#each buttonColors as |color|}}
+        <div><label>{{radio-button value=color groupValue=selectedColor}} {{color}}</label></div>
+      {{/each}}
+    </div>
+
+    <h3>Animation style</h3>
+    <div class="control-group">
+      {{#each buttonStyles as |style|}}
+        <div><label>{{radio-button value=style groupValue=selectedAnimation}} {{style}}</label></div>
+      {{/each}}
+    </div>
+
+    <h3>Timeout</h3>
+    <div class="control-group">
+      <label for="button-timeout-range">{{timeout}}ms</label> {{input id="button-timeout-range" type="range" max="60000" step="500" value=timeout}}
+    </div>
+
+    <h3>Template Code</h3>
+    <div class="control-group">
+      <textarea id="txt-template-code" rows=9 cols=100>{{templateCode}}</textarea>
+    </div>    
+  </div>
+
+  <p><label>{{input type="checkbox" checked=inFlight}} In-Flight</label></p>
+
+  <div class="demo-container">
+    <p class="demo">Demo (With Promises)</p>
+    {{#spin-button
+      data-color=selectedColor
+      action=(action "createWithPromise")
+      defaultTimout=timeout
+      buttonStyle=selectedAnimation}}Do Something Expensive{{/spin-button}}
+
+    <br><br>
+     <p class="demo">Demo (Without Promises)</p>
+    {{#spin-button
+      data-color=selectedColor
+      inFlight=inFlight
+      action=(action "createWithoutPromise")
+      defaultTimout=timeout
+      buttonStyle=selectedAnimation}}Do Something Expensive{{/spin-button}}
+  </div>
+
+
+  <a class="install-btn" href="https://github.com/ivanvanderbyl/ember-spin-button">Installation Instructions</a>
+
+  {{outlet}}
+</div>

@@ -1,6 +1,121 @@
-# Ember-spin-button2
+# ember-spin-button2
 
-This README outlines the details of collaborating on this Ember addon.
+Creates a button with a nice spinner to the side. 
+
+(Optional) Design based upon [Ladda](http://lab.hakim.se/ladda/), but implemented entirely as an Ember Component.
+
+Forked from [ember-spin-button]()
+
+![Demo](/screenshots/Ember-Spin-Button-demo.gif?raw=true)
+
+# Changes from ember-spin-button
+
+1. No bower dependency.
+1. No default button style makes it easy to use with other frawework e.g. bootstrap.
+2. Setting spin-button enabled/disabled is supported and does not come in the way of spinner functionality. 
+3. Title of spin-utton can be set.
+
+## Installation
+
+```bash
+ember install ember-spin-button2
+```
+
+Add the stylesheet include if it wasn't added automatically during installation:
+
+```css
+// app/styles/app.scss
+@import "spin-button";
+```
+
+## Usage
+
+```handlebars
+{{#spin-button 
+	classNames="btn btn-default"
+    action=(action "createUser")
+    buttonStyle="expand-right"}}Create User{{/spin-button}}
+```
+
+You can manually bind something to indicate the busy state to `inFlight`, or simply return a promise from your action handler (Ember 1.13+) and the button will indicate a busy state while the promise is resolving.
+
+The button will automatically disable itself when you click it, after calling the `action`.
+
+### Example Closure Action returning a promise:
+
+**Requires Ember 1.13**
+
+In Ember 1.13+, action handlers can have return values. If you return a promise in your action handler, `ember-spin-button` will automatically use the state of the promise to indicate progress.
+
+```js
+// some-controller.js
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
+  actions: {
+    saveRecord: function() {
+      // Save returns a Promise from Ember Data which resolves when the model is saved.
+      return this.get('model').save();
+    },
+  }
+});
+```
+
+```handlebars
+<!-- my-template.hbs -->
+{{#spin-button action=(action "saveRecord")}}Save Changes{{/spin-button}}
+```
+
+## Configuration
+
+### `startDelay`
+
+A delay before showing the animation, but after disabling the button.
+
+**Default**: `150ms`. _Any value <4ms will disable this feature._
+
+### `inFlight` (deprecated)
+
+Binds the busy state of the button.
+
+**Default**: `false`.
+
+### `defaultTimeout`
+
+A timeout after which the button will return to its default, non-in-flight state. Set to a falsy value to disable.
+
+**Default**: `2E3`. _Any falsy value will disable this feature._
+
+### `color`
+
+You can specify one of the predefined colors, or define your own using the `buttonColor` mixin:
+
+```
+@include buttonColor( 'red', #FF0000 );
+```
+
+Predefined colors:
+
+- `green`
+- `purple`
+- `mint`
+- `red`
+- `blue`
+
+### `buttonStyle`
+
+- `expand-right`
+- `expand-left`
+- `expand-down`
+- `expand-up`
+- `contract`
+- `contract-overlay`
+- `zoom-in`
+- `zoom-out`
+- `slide-left`
+- `slide-right`
+- `slide-up`
+- `slide-down`
 
 ## Installation
 
@@ -15,7 +130,6 @@ This README outlines the details of collaborating on this Ember addon.
 
 ## Running Tests
 
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
 * `ember test`
 * `ember test --server`
 
@@ -23,4 +137,4 @@ This README outlines the details of collaborating on this Ember addon.
 
 * `ember build`
 
-For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).

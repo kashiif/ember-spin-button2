@@ -96,7 +96,7 @@ export default Ember.Component.extend({
   },
 
   _disabledComputed: Ember.computed('disabled', 'inFlight', {
-    get(key, value) {
+    get() {
       return this.get('inFlight') || this.get('disabled');
     },
     set( /* key */ /*, value */ ) {
@@ -105,9 +105,10 @@ export default Ember.Component.extend({
   }),
 
   _titleComputed: Ember.computed('title', 'inFlight', {
-    get(key, value) {
-      if (this.get('inFlight'))
+    get() {
+      if (this.get('inFlight')) {
         return this.get('titleWhenBusy');
+      }
 
       return this.get('title');
     },
