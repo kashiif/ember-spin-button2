@@ -11,7 +11,7 @@ Forked from [ember-spin-button]()
 # Changes from ember-spin-button
 
 1. No bower dependency.
-1. No default button style makes it easy to use with other frawework e.g. bootstrap.
+1. No default button style makes it easy to use with other framework e.g. bootstrap.
 2. Setting spin-button enabled/disabled is supported and does not come in the way of spinner functionality. 
 3. Title of spin-utton can be set.
 
