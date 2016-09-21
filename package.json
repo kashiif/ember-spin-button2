@@ -1,7 +1,7 @@
 {
   "name": "ember-spin-button2",
-  "version": "0.1.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.1.1",
+  "description": "An ember addon for promise-based spinner button using spin.js.",
   "directories": {
     "doc": "doc",
     "test": "tests"
