@@ -55,7 +55,7 @@ export default Ember.Component.extend({
 
   _inFlightDidChange: observer('inFlight', function () {
     var element = this.get('element');
-    
+
     if (!element) {
       return;
     }
@@ -110,7 +110,13 @@ export default Ember.Component.extend({
         return this.get('titleWhenBusy');
       }
 
-      return this.get('title');
+      let t = this.get('title');
+
+      if (!t) { // null or undefined
+        t = '';
+      }
+
+      return t;
     },
     set( /* key */ /*, value */ ) {
       Ember.logger.error('[spin-button]: _titleComputed property is readonly. Use `title` or `titleWhenBusy`' +
