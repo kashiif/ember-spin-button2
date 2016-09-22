@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "build": "ember build",
+    "build": "ember build --output-path=docs/demo/ --environment=production",
     "start": "ember server",
     "test": "ember try:testall"
   },
