@@ -6,12 +6,12 @@ Creates a button with a nice spinner to the side.
 
 Forked from [ember-spin-button](https://github.com/ivanvanderbyl/ember-spin-button)
 
-[Demo](https://kashiif.github.io/ember-spin-button2/demo/)
+<a href="https://kashiif.github.io/ember-spin-button2/demo/" target="_blank">Demo</a>
 
 # Changes from ember-spin-button
 
 1. No bower dependency.
-1. No default button style makes it easy to use with other framework e.g. bootstrap.
+1. No forced default button style makes it easy to use with other framework e.g. bootstrap.
 2. Setting spin-button enabled/disabled is supported and does not come in the way of spinner functionality. 
 3. Title of spin-utton can be set.
 
