@@ -5,9 +5,11 @@ export default Ember.Controller.extend({
 
   buttonStyles: w('expand-left expand-right expand-up expand-down contract contract-overlay zoom-in zoom-out slide-left slide-right slide-up slide-down'),
   buttonColors: w('green red blue mint purple'),
+
+  selectedAnimation: 'expand-left',
   templateCode: Ember.computed('selectedColor', 'selectedAnimation', 'timeout', 'inFlight', function(){
 
-    return '{{#spin-button\n' + 
+    return '{{#spin-button\n' +
       (this.get('selectedColor') ? '\tdata-color=' + this.get('selectedColor') + '\n' : '') +
       //'\tinFlight=inFlight'  + '\n' +
       '\taction=(action "myCustomAction")'  + '\n' +

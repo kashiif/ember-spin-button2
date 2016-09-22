@@ -21,32 +21,38 @@
       <label for="button-timeout-range">{{timeout}}ms</label> {{input id="button-timeout-range" type="range" max="60000" step="500" value=timeout}}
     </div>
 
-    <h3>Template Code</h3>
-    <div class="control-group">
-      <textarea id="txt-template-code" rows=9 cols=100>{{templateCode}}</textarea>
-    </div>    
   </div>
 
   <p><label>{{input type="checkbox" checked=inFlight}} In-Flight</label></p>
 
   <div class="demo-container">
-    <p class="demo">Demo (With Promises)</p>
     {{#spin-button
       data-color=selectedColor
+      classNames=(unless selectedColor 'btn btn-primary')
       action=(action "createWithPromise")
       defaultTimout=timeout
-      buttonStyle=selectedAnimation}}Do Something Expensive{{/spin-button}}
+      buttonStyle=selectedAnimation}}Click Me (With Promises){{/spin-button}}
 
-    <br><br>
-     <p class="demo">Demo (Without Promises)</p>
+    <br>
+    <br>
     {{#spin-button
       data-color=selectedColor
+      classNames=(unless selectedColor 'btn btn-primary')
       inFlight=inFlight
       action=(action "createWithoutPromise")
       defaultTimout=timeout
-      buttonStyle=selectedAnimation}}Do Something Expensive{{/spin-button}}
+      buttonStyle=selectedAnimation}}Click Me (Without Promises){{/spin-button}}
   </div>
 
+
+  <div class="controls-container">
+
+    <h3>Template Code</h3>
+    <div class="control-group">
+      <textarea id="txt-template-code" rows=9 cols=100>{{templateCode}}</textarea>
+    </div>
+
+  </div>
 
   <a class="install-btn" href="https://github.com/ivanvanderbyl/ember-spin-button">Installation Instructions</a>
 
