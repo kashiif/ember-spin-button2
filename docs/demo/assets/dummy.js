@@ -940,7 +940,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"ember-spin-button2","version":"0.1.1+702b823f"});
+  require("dummy/app")["default"].create({"name":"ember-spin-button2","version":"0.1.1+ff61ed70"});
 }
 
 /* jshint ignore:end */

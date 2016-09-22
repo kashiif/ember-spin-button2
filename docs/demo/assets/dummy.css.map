@@ -3,9 +3,9 @@
 	"sourceRoot": "/Users/kkhan/Work/guess/search-loading/ember-spin-button2/app/styles",
 	"file": "dummy.css",
 	"sources": [
-		"../../sass_compiler-input_base_path-hYmULTyt.tmp/0/app/styles/app.scss",
-		"../../sass_compiler-input_base_path-hYmULTyt.tmp/0/app/styles/_spin-button.scss",
-		"../../sass_compiler-input_base_path-hYmULTyt.tmp/0/app/styles/_spin-button-base.scss"
+		"../../sass_compiler-input_base_path-mPBc5PyA.tmp/0/app/styles/app.scss",
+		"../../sass_compiler-input_base_path-mPBc5PyA.tmp/0/app/styles/_spin-button.scss",
+		"../../sass_compiler-input_base_path-mPBc5PyA.tmp/0/app/styles/_spin-button-base.scss"
 	],
 	"sourcesContent": [
 		"html, body {\n  font-family: Helvetica, Arial, sans-serif;\n  margin: 10px;\n}\n\n.controls-container {\n  .control-group {\n    margin-bottom: 16px;\n    overflow: hidden;\n\n    label {\n      float: left;\n      width: 130px;\n    }\n\n    select, input[type=\"range\"]{\n      float: left;\n    }\n  }\n}\n\n.container {\n  width: 720px;\n  margin: 0 auto;\n\n  h2 {\n    font-size: 24px;\n  }\n\n  .demo-container {\n    background: darken(white, 12%);\n    padding: 32px;\n    text-align: center;\n    border-radius: 5px;\n\n    p.demo {\n      color: darken(white, 24%);\n      font-size: 2em;\n      line-height: 1em;\n      margin-top: 0;\n    }\n\n    button:focus {\n      outline: none;\n    }\n  }\n\n  .install-btn {\n    margin-top: 32px;\n    text-align: center;\n    display: block;\n  }\n}\n\n@import \"spin-button\";\n",
