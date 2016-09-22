@@ -6,7 +6,7 @@ Creates a button with a nice spinner to the side.
 
 Forked from [ember-spin-button]()
 
-![Demo](/screenshots/Ember-Spin-Button-demo.gif?raw=true)
+![Demo](https://kashiif.github.io/ember-spin-button2/demo/)
 
 # Changes from ember-spin-button
 
