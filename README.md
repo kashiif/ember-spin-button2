@@ -4,9 +4,9 @@ Creates a button with a nice spinner to the side.
 
 (Optional) Design based upon [Ladda](http://lab.hakim.se/ladda/), but implemented entirely as an Ember Component.
 
-Forked from [ember-spin-button]()
+Forked from [ember-spin-button](https://github.com/ivanvanderbyl/ember-spin-button)
 
-![Demo](https://kashiif.github.io/ember-spin-button2/demo/)
+[Demo](https://kashiif.github.io/ember-spin-button2/demo/)
 
 # Changes from ember-spin-button
 
