@@ -40,7 +40,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.baseURL = '/demo/';
+    ENV.baseURL = '/ember-spin-button2/demo/';
   }
 
   return ENV;
