@@ -10,12 +10,25 @@ html, body {
 
     label {
       float: left;
-      width: 130px;
+      //width: 130px;
+    }
+
+    label.group-item {
+      width: 165px;
     }
 
     select, input[type="range"]{
       float: left;
     }
+
+    select[disabled], input[disabled] {
+      background-color: #eee;
+    }
+
+    textarea {
+      width: 100%;
+    }
+
   }
 }
 
@@ -23,15 +36,20 @@ html, body {
   width: 720px;
   margin: 0 auto;
 
-  h2 {
-    font-size: 24px;
+  p {
+    transition: opacity 350ms ease-in;
+  }
+
+  .transparent {
+    opacity: 0;
   }
 
   .demo-container {
     background: darken(white, 12%);
-    padding: 32px;
     text-align: center;
     border-radius: 5px;
+    height: 120px;
+    position: relative;
 
     p.demo {
       color: darken(white, 24%);
@@ -40,16 +58,85 @@ html, body {
       margin-top: 0;
     }
 
+    button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
     button:focus {
       outline: none;
     }
   }
 
   .install-btn {
-    margin-top: 32px;
-    text-align: center;
+    margin: 0 auto;
+    padding: 15px;
     display: block;
+    color: #777;
+    width: 50px;
   }
+
+  .install-btn:hover {
+    color: #4078c0;
+    text-decoration: none;
+  }
+
+  .install-btn > svg {
+    fill: currentColor;
+  }
+}
+
+
+.tabs {
+  position: relative;
+  min-height: 650px; /* This part sucks */
+  clear: both;
+  margin: 25px 0 10px 0;
+}
+.tab {
+  float: left;
+}
+.tab .tab-label {
+  background: #eee;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-left: -1px;
+  position: relative;
+  left: 1px;
+  line-height: 1em;
+
+  max-width: none;
+  margin-bottom: 0;
+  display: block;
+  font-weight: normal;
+  cursor: pointer;
+}
+.tab [type=radio] {
+  display: none;
+}
+.tab-content {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  background: white;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  opacity: 0;
+  transition: opacity 350ms ease-in;
+  visibility: hidden;
+}
+
+[type=radio]:checked ~ .tab-label {
+  background: white;
+  border-bottom: 1px solid white;
+}
+[type=radio]:checked ~ .tab-content {
+  visibility: visible;
+  opacity: 1;
 }
 
 @import "spin-button";

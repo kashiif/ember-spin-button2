@@ -4,57 +4,143 @@
   <div class="controls-container">
     <h3>Button Color</h3>
     <div class="control-group">
-      {{#each buttonColors as |color|}}
-        <div><label>{{radio-button value=color groupValue=selectedColor}} {{color}}</label></div>
-      {{/each}}
+
+      <div class="col-xs-12">
+        <label>
+          {{radio-button value='built-in' groupValue=colorPreference}}Use a built-in color
+        </label>&nbsp;
+
+        <select
+                disabled={{if selectedColorForSpinButton false true}}
+                onchange= {{action (mut selectedColor) value="target.value"}}
+                value={{selectedColor}}>
+          {{#each buttonColors as |color|}}
+            <option value={{color}}>{{color}}</option>
+          {{/each}}
+        </select>
+      </div>
+
+      <div class="col-xs-12">
+        <label>
+          {{radio-button value='css-class' groupValue=colorPreference}}Use custom class (e.g. bootstrap class)
+        </label>&nbsp;
+        {{input value=buttonClassNames disabled=(if selectedColorForSpinButton true false)}}
+      </div>
+
     </div>
 
     <h3>Animation style</h3>
     <div class="control-group">
-      {{#each buttonStyles as |style|}}
-        <div><label>{{radio-button value=style groupValue=selectedAnimation}} {{style}}</label></div>
-      {{/each}}
+      <div class="col-xs-12">
+        {{#each buttonStyles as |style|}}
+          <div><label class="group-item">{{radio-button value=style groupValue=selectedAnimation}}
+            {{style}}</label></div>
+        {{/each}}
+      </div>
     </div>
 
-    <h3>Timeout</h3>
-    <div class="control-group">
-      <label for="button-timeout-range">{{timeout}}ms</label> {{input id="button-timeout-range" type="range" max="60000" step="500" value=timeout}}
+
+    <div class="tabs">
+
+      <div class="tab">
+        <input type="radio" id="tab-1" name="tab-group-1" checked>
+
+        <div class="tab-content">
+
+          <p>If the return value of action is a Promise, the button will change its state based on  that Promise's
+            state.</p><br>
+
+          <div class="demo-container">
+            {{#spin-button
+              class=classNamesForSpinButton
+              data-color=selectedColorForSpinButton
+              action=(action "createWithPromise")
+              buttonStyle=selectedAnimation
+            }}
+              {{buttonLabel}}
+            {{/spin-button}}
+          </div>
+
+          <div class="controls-container">
+
+            <h3>Template Code</h3>
+            <div class="control-group">
+              <textarea rows=7 cols=60>{{templateCodeWithPromise}}</textarea>
+            </div>
+
+          </div>
+
+        </div> <!-- ./tab-content -->
+        <label for="tab-1" class="tab-label">Using Promise</label>
+      </div>
+
+      <div class="tab">
+        <input type="radio" id="tab-2" name="tab-group-1">
+        <div class="tab-content">
+
+          <p>If the return value of action is not a Promise, The button will update state based on <code>inFligh</code>
+            attribute. It can also be configured to revert to default state after <code>timeout</code> ms.</p>
+
+          <div class="demo-container">
+            {{#spin-button
+              class=classNamesForSpinButton
+              data-color=selectedColorForSpinButton
+              inFlight=booleanControllerVarForSpinner
+              action=(action "createWithoutPromise")
+              defaultTimeout=timeout
+              buttonStyle=selectedAnimation
+            }}
+              {{buttonLabel}}
+            {{/spin-button}}
+
+          </div>
+
+          <p class="{{if booleanControllerVarForSpinner '' 'transparent'}}">
+            {{#if isTimeoutEnabled}}
+              The button will revert the <code>booleanControllerVarForSpinner</code> after {{timeout}}ms.
+            {{else}}
+              Uncheck the in-Flight checkbox to stop spinner.
+            {{/if}}
+          </p>
+
+          <h3>Timeout</h3>
+          <div class="control-group">
+            <label for="button-timeout-range">{{timeout}}ms</label>
+            {{input id="button-timeout-range" type="range" max="60000" step="500" value=timeout}}
+          </div>
+
+          <p><label>{{input type="checkbox" checked=booleanControllerVarForSpinner}} In-Flight</label></p>
+
+          <div class="controls-container">
+
+            <h3>Template Code</h3>
+            <div class="control-group">
+              <textarea rows=9 cols=60>{{templateCodeNonPromise}}</textarea>
+            </div>
+
+          </div>
+
+
+        </div> <!-- ./tab-content -->
+        <label for="tab-2" class="tab-label">Without Promise</label>
+      </div>
+
     </div>
+
 
   </div>
 
-  <p><label>{{input type="checkbox" checked=inFlight}} In-Flight</label></p>
 
-  <div class="demo-container">
-    {{#spin-button
-      data-color=selectedColor
-      classNames=(unless selectedColor 'btn btn-primary')
-      action=(action "createWithPromise")
-      defaultTimout=timeout
-      buttonStyle=selectedAnimation}}Click Me (With Promise){{/spin-button}}
-
-    <br>
-    <br>
-    {{#spin-button
-      data-color=selectedColor
-      classNames=(unless selectedColor 'btn btn-primary')
-      inFlight=inFlight
-      action=(action "createWithoutPromise")
-      defaultTimout=timeout
-      buttonStyle=selectedAnimation}}Click Me (Without Promise){{/spin-button}}
-  </div>
-
-
-  <div class="controls-container">
-
-    <h3>Template Code</h3>
-    <div class="control-group">
-      <textarea id="txt-template-code" rows=9 cols=100>{{templateCode}}</textarea>
-    </div>
-
-  </div>
-
-  <a class="install-btn" href="https://github.com/ivanvanderbyl/ember-spin-button">Installation Instructions</a>
+  <a class="install-btn"
+     href="https://github.com/kashiif/ember-spin-button2"
+     title="Go to ember-spin-button2's github project"
+  >
+    <svg aria-hidden="true" class="octicon octicon-mark-github" height="20" version="1.1" viewBox="0 0 16 16"
+         width="20">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z">
+      </path>
+    </svg>
+  </a>
 
   {{outlet}}
 </div>
