@@ -1,10 +1,10 @@
 # ember-spin-button2
 
-Creates a button with a nice spinner to the side. 
+Creates a button with a nice spinner.
+
+Initial code comes from [ember-spin-button](https://github.com/ivanvanderbyl/ember-spin-button).
 
 (Optional) Design based upon [Ladda](http://lab.hakim.se/ladda/), but implemented entirely as an Ember Component.
-
-Forked from [ember-spin-button](https://github.com/ivanvanderbyl/ember-spin-button)
 
 <a href="https://kashiif.github.io/ember-spin-button2/demo/" target="_blank">Demo</a>
 
@@ -32,20 +32,20 @@ Add the stylesheet include if it wasn't added automatically during installation:
 
 ```handlebars
 {{#spin-button 
-	classNames="btn btn-default"
+	  class="btn btn-default"
     action=(action "createUser")
-    buttonStyle="expand-right"}}Create User{{/spin-button}}
+    buttonStyle="expand-right"}}
+        Create User
+{{/spin-button}}
 ```
 
-You can manually bind something to indicate the busy state to `inFlight`, or simply return a promise from your action handler (Ember 1.13+) and the button will indicate a busy state while the promise is resolving.
+When the button is clicked, it will automatically disable itself and then calls the `action`.
 
-The button will automatically disable itself when you click it, after calling the `action`.
-
-### Example Closure Action returning a promise:
+### Promise based approach (Preferred):
 
 **Requires Ember 1.13**
 
-In Ember 1.13+, action handlers can have return values. If you return a promise in your action handler, `ember-spin-button` will automatically use the state of the promise to indicate progress.
+In Ember 1.13+, closure action handlers can have return values. If you return a promise in your action handler, `ember-spin-button` will automatically use the state of the promise to indicate progress.
 
 ```js
 // some-controller.js
@@ -65,6 +65,13 @@ export default Ember.Controller.extend({
 <!-- my-template.hbs -->
 {{#spin-button action=(action "saveRecord")}}Save Changes{{/spin-button}}
 ```
+
+Note that if the button lies in a component, the action must be passed as closure action down the route/component hierarchy (and not using `sendAction`).
+
+### Non-Promise based approach:
+
+You can manually bind something to indicate the busy state to `inFlight` attribute.
+
 
 ## Configuration
 
