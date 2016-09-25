@@ -29,7 +29,7 @@ export default Ember.Component.extend({
     '_disabledComputed:disabled',
     '_titleComputed:title',
     'type',
-    'data-color', /* This attribute is used only in css to apply one of the default color themes */
+    '_dataColorComputed:data-color', /* This attribute is used only in css to apply one of the default color themes */
     'buttonStyle:data-style',
   ],
   classNameBindings: ['inFlight:in-flight:ready', ':spin-button'],
@@ -122,6 +122,10 @@ export default Ember.Component.extend({
       Ember.logger.error('[spin-button]: _titleComputed property is readonly. Use `title` or `titleWhenBusy`' +
         ' property.');
     },
+  }),
+
+  _dataColorComputed: Ember.computed('data-color', function(){
+    return this.get('data-color') || undefined;
   }),
 
   setEnabled() {
