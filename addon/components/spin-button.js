@@ -22,6 +22,8 @@ export default Ember.Component.extend({
 
   startDelay: 100,
 
+  spinnerClass: '',
+
   attributeBindings: [
     /**
      * bind rendered element's 'disabled' attribute to components's computed property
@@ -83,7 +85,9 @@ export default Ember.Component.extend({
 
   _createSpinner(element) {
     if (!this._spinner) {
-      this._spinner = createSpinner(element);
+      this._spinner = createSpinner(element, {
+        spinnerClass: this.get('spinnerClass')
+      });
       this._spinner.spin(element.querySelector('.spin-button-spinner'));
     }
 
@@ -106,11 +110,14 @@ export default Ember.Component.extend({
 
   _titleComputed: Ember.computed('title', 'inFlight', {
     get() {
-      if (this.get('inFlight')) {
-        return this.get('titleWhenBusy');
-      }
+      let t;
 
-      let t = this.get('title');
+      if (this.get('inFlight')) {
+        t = this.get('titleWhenBusy');
+      }
+      else {
+        t = this.get('title');
+      }
 
       if (!t) { // null or undefined
         t = '';
