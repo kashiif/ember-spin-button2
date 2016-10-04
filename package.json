@@ -52,6 +52,7 @@
     "spin.js": "^2.3.2"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "configPath": "tests/dummy/config",
+    "demoURL": "https://kashiif.github.io/ember-spin-button2/demo/"
   }
 }
